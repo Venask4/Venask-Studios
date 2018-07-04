@@ -11,6 +11,7 @@ public class playerControl : MonoBehaviour {
 	// Variables
 	Vector3 origin = new Vector3(0,0,0);
 	public bool selected = false;
+	public bool returning = false;
 
 	// Functions
 	public void returnHomeNW() {
@@ -23,19 +24,22 @@ public class playerControl : MonoBehaviour {
 		else if (player.transform.position.x >= home.x){
 			player.transform.Translate(-0.05f,0,0);
 		}
+		else {
+			returning = false;
+		}
 	}
 	public void returnHomeNE() {
-		if (player.transform.position.x < home.x - 0.5f){
+		if (player.transform.position.x <= home.x - 0.5f){
 			player.transform.Translate(0.05f,0,0);
-			print("1");
 		}
-		else if (player.transform.position.y < home.y -0.5f){
+		else if (player.transform.position.y < home.y - 0.5f){
 			player.transform.Translate(0,0.05f,0);
-			print("2");
 		}
-		else if (player.transform.position.x < home.x){
+		else if (player.transform.position.x <= home.x){
 			player.transform.Translate(0.05f,0,0);
-			print("3");
+		}
+		else {
+			returning = false;
 		}
 	}
 	public void returnHomeSW() {
@@ -48,6 +52,9 @@ public class playerControl : MonoBehaviour {
 		else if (player.transform.position.x >= home.x){
 			player.transform.Translate(-0.05f,0,0);
 		}
+		else {
+			returning = false;
+		}
 	}
 	public void returnHomeSE() {
 		if (player.transform.position.x <= home.x - 0.5f){
@@ -58,6 +65,9 @@ public class playerControl : MonoBehaviour {
 		}
 		else if (player.transform.position.x <= home.x){
 			player.transform.Translate(0.05f,0,0);
+		}
+		else {
+			returning = false;
 		}
 	}
 
