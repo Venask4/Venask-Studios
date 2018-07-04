@@ -4,30 +4,60 @@ using UnityEngine;
 
 public class playerControl : MonoBehaviour {
 	public GameObject player;
+	public GameObject fireHouseObject;
+	private clickListener fireHouseScript;
+	public Vector3 home;
 
 	// Variables
 	Vector3 origin = new Vector3(0,0,0);
-	private bool returnCmd = false;
 	public bool selected = false;
 
 	// Functions
-	void returnHome() {
-		if (Input.anyKey == true) {
-			returnCmd = true;
+	public void returnHomeNW() {
+		if (player.transform.position.x >= home.x + 0.5f){
+			player.transform.Translate(-0.05f,0,0);
 		}
-		if (returnCmd == true) {
-			if (player.transform.position.x >= -1.178f + 0.5f){
-				player.transform.Translate(-0.025f,0,0);
-			}
-			else if (player.transform.position.y <= 0.486f){
-				player.transform.Translate(0,0.025f,0);
-			}
-			else if (player.transform.position.x >= -1.178f){
-				player.transform.Translate(-0.025f,0,0);
-			}
-			else {
-				returnCmd = false;
-			}
+		else if (player.transform.position.y < home.y -0.5f){
+			player.transform.Translate(0,0.05f,0);
+		}
+		else if (player.transform.position.x >= home.x){
+			player.transform.Translate(-0.05f,0,0);
+		}
+	}
+	public void returnHomeNE() {
+		if (player.transform.position.x < home.x - 0.5f){
+			player.transform.Translate(0.05f,0,0);
+			print("1");
+		}
+		else if (player.transform.position.y < home.y -0.5f){
+			player.transform.Translate(0,0.05f,0);
+			print("2");
+		}
+		else if (player.transform.position.x < home.x){
+			player.transform.Translate(0.05f,0,0);
+			print("3");
+		}
+	}
+	public void returnHomeSW() {
+		if (player.transform.position.x >= home.x + 0.5f){
+			player.transform.Translate(-0.05f,0,0);
+		}
+		else if (player.transform.position.y > home.y -0.5f){
+			player.transform.Translate(0,-0.05f,0);
+		}
+		else if (player.transform.position.x >= home.x){
+			player.transform.Translate(-0.05f,0,0);
+		}
+	}
+	public void returnHomeSE() {
+		if (player.transform.position.x <= home.x - 0.5f){
+			player.transform.Translate(0.05f,0,0);
+		}
+		else if (player.transform.position.y > home.y -0.5f){
+			player.transform.Translate(0,-0.05f,0);
+		}
+		else if (player.transform.position.x <= home.x){
+			player.transform.Translate(0.05f,0,0);
 		}
 	}
 
@@ -38,11 +68,12 @@ public class playerControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		fireHouseScript = fireHouseObject.GetComponent<clickListener>();
+		home = fireHouseObject.transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 }
