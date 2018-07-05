@@ -1,0 +1,2 @@
+BUG LIST
+Moving fire truck to house with the same Y coordinate.

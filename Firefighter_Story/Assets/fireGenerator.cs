@@ -42,11 +42,9 @@ public class fireGenerator : MonoBehaviour {
 
 	void setRandomHouseOnFire() {
 		time = 0;
-		// develop this function yo
-		print("Somebody call 911, shorty fire burning on the dance floor");
 		i = Mathf.RoundToInt(Random.Range(0, houses.Length));
 		houseScript = houses[i].GetComponent<houseBurner>();
-		houseScript.burn();
+		houseScript.burning = true;
 
 	}
 

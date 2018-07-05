@@ -7,6 +7,7 @@ public class houseClickListener : MonoBehaviour {
 	private playerControl playerScript;
 	private bool returning = false;
 	private string direction = null;
+	private houseBurner burnerScript;
 
 	// Methods
     void OnMouseDown() {
@@ -34,6 +35,7 @@ public class houseClickListener : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerScript = fireTruckObject.GetComponent<playerControl>();
+		burnerScript = GetComponent<houseBurner>();
 	}
 	
 	// Update is called once per frame
@@ -42,24 +44,28 @@ public class houseClickListener : MonoBehaviour {
 			playerScript.returnHomeSW();
 			if (playerScript.returning == false) {
 				returning = false;
+				burnerScript.extinguishing = true;
 			}
 		}
 		if (returning == true && direction == "NW") {
 			playerScript.returnHomeNW();
 			if (playerScript.returning == false) {
 				returning = false;
+				burnerScript.extinguishing = true;
 			}
 		}
 		if (returning == true && direction == "SE") {
 			playerScript.returnHomeSE();
 			if (playerScript.returning == false) {
 				returning = false;
+				burnerScript.extinguishing = true;
 			}
 		}
 		if (returning == true && direction == "NE") {
 			playerScript.returnHomeNE();
 			if (playerScript.returning == false) {
 				returning = false;
+				burnerScript.extinguishing = true;
 			}
 		}
 	}
