@@ -1173,7 +1173,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1164140460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: -1.5, z: 0}
+  m_LocalPosition: {x: 1.8, y: -1.5, z: 0}
   m_LocalScale: {x: 0.77, y: 0.77, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1195,6 +1195,7 @@ MonoBehaviour:
   home: {x: 0, y: 0, z: 0}
   selected: 0
   returning: 0
+  vertOffsetting: 0
 --- !u!61 &1164140464
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1854,10 +1855,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1646426179}
   - component: {fileID: 1646426178}
-  - component: {fileID: 1646426180}
   - component: {fileID: 1646426182}
   - component: {fileID: 1646426181}
   - component: {fileID: 1646426183}
+  - component: {fileID: 1646426180}
   m_Layer: 0
   m_Name: Fire House
   m_TagString: Untagged
@@ -1930,7 +1931,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1646426177}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3468b21f470e2374095ca450b61769e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 54d0828b414e7ba48aa6d526a230d751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fireTruckObject: {fileID: 1164140460}

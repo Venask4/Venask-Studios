@@ -12,10 +12,29 @@ public class playerControl : MonoBehaviour {
 	Vector3 origin = new Vector3(0,0,0);
 	public bool selected = false;
 	public bool returning = false;
+	public bool vertOffsetting = false;
 
 	// Functions
+	public void verticalOffsetMove() {
+		if (player.transform.position.x >= 1.8f) {
+			player.transform.Translate(-0.05f,0,0);
+			if (player.transform.position.x <= 1.8f) {
+				vertOffsetting = false;
+			}
+		}
+		else {
+			player.transform.Translate(0.05f,0,0);
+			if (Mathf.Abs(player.transform.position.x - home.x) >= 0.6f) {
+				vertOffsetting = false;
+			}
+		}
+	}
 	public void returnHomeNW() {
-		if (player.transform.position.x >= home.x + 0.5f){
+		if (vertOffsetting) {
+			verticalOffsetMove();
+			return;
+		}
+		else if (player.transform.position.x >= home.x + 0.5f){
 			player.transform.Translate(-0.05f,0,0);
 		}
 		else if (player.transform.position.y < home.y -0.5f){
@@ -29,7 +48,11 @@ public class playerControl : MonoBehaviour {
 		}
 	}
 	public void returnHomeNE() {
-		if (player.transform.position.x <= home.x - 0.5f){
+		if (vertOffsetting) {
+			verticalOffsetMove();
+			return;
+		}
+		else if (player.transform.position.x <= home.x - 0.5f){
 			player.transform.Translate(0.05f,0,0);
 		}
 		else if (player.transform.position.y < home.y - 0.5f){
@@ -43,7 +66,11 @@ public class playerControl : MonoBehaviour {
 		}
 	}
 	public void returnHomeSW() {
-		if (player.transform.position.x >= home.x + 0.5f){
+		if (vertOffsetting) {
+			verticalOffsetMove();
+			return;
+		}
+		else if (player.transform.position.x >= home.x + 0.5f){
 			player.transform.Translate(-0.05f,0,0);
 		}
 		else if (player.transform.position.y > home.y -0.5f){
@@ -57,7 +84,11 @@ public class playerControl : MonoBehaviour {
 		}
 	}
 	public void returnHomeSE() {
-		if (player.transform.position.x <= home.x - 0.5f){
+		if (vertOffsetting) {
+			verticalOffsetMove();
+			return;
+		}
+		else if (player.transform.position.x <= home.x - 0.5f){
 			player.transform.Translate(0.05f,0,0);
 		}
 		else if (player.transform.position.y > home.y -0.5f){

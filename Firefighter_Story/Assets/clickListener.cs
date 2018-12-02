@@ -13,20 +13,25 @@ public class clickListener : MonoBehaviour {
     	if (playerScript.selected == true) {
     		returning = true;
     	}
-		if(fireTruckObject.transform.position.x > transform.position.x){
-			if (fireTruckObject.transform.position.y > transform.position.y){
-				direction = "SW";
+    	print(Mathf.Abs(fireTruckObject.transform.position.x - transform.position.x));
+    	if (Mathf.Abs(fireTruckObject.transform.position.x - transform.position.x) < 0.6f) {
+    		print("vertical offsetting");
+    		playerScript.vertOffsetting = true;
+    	}
+			if(fireTruckObject.transform.position.x > transform.position.x){
+				if (fireTruckObject.transform.position.y > transform.position.y){
+					direction = "SW";
+				}
+				else {
+					direction = "NW";
+				}
+			}
+			else if (fireTruckObject.transform.position.y > transform.position.y) {
+				direction = "SE";
 			}
 			else {
-				direction = "NW";
+				direction = "NE";
 			}
-		}
-		else if (fireTruckObject.transform.position.y > transform.position.y) {
-			direction = "SE";
-		}
-		else {
-			direction = "NE";
-		}
     }
 
 	// Use this for initialization

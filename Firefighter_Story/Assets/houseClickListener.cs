@@ -8,14 +8,10 @@ public class houseClickListener : MonoBehaviour {
 	private bool returning = false;
 	private string direction = null;
 	private houseBurner burnerScript;
+	private bool prevVertOffset = false;
 
 	// Methods
-    void OnMouseDown() {
-    	if (playerScript.selected == true) {
-    		playerScript.home = transform.position;
-    		playerScript.returning = true;
-    		returning = true;
-    	}
+	public void getDirection() {
 		if(fireTruckObject.transform.position.x > transform.position.x){
 			if (fireTruckObject.transform.position.y > transform.position.y){
 				direction = "SW";
@@ -30,7 +26,18 @@ public class houseClickListener : MonoBehaviour {
 		else {
 			direction = "NE";
 		}
-    }
+	}
+  void OnMouseDown() {
+  	if (playerScript.selected == true) {
+  		playerScript.home = transform.position;
+  		playerScript.returning = true;
+  		returning = true;
+  	}
+  	if (Mathf.Abs(fireTruckObject.transform.position.x - transform.position.x) < 0.6f) {
+  		playerScript.vertOffsetting = true;
+  	}
+		getDirection();
+  }
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +47,11 @@ public class houseClickListener : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (prevVertOffset == true && playerScript.vertOffsetting == false) {
+			getDirection();
+			prevVertOffset = playerScript.vertOffsetting;
+		}
+		else {prevVertOffset = playerScript.vertOffsetting;}
 		if (returning == true && direction == "SW") {
 			playerScript.returnHomeSW();
 			if (playerScript.returning == false) {
