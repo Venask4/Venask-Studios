@@ -3,7 +3,6 @@ BUG LIST
 
 TO DO LIST
 Change returnHome function to moveToPoint or something more accurate
-Make player return to firehouse automatically after fire extinguish
 Set level timer
 Make different firehouse
 Make different types of fires/buildings/ppl trapped

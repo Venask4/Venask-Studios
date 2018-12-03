@@ -7,7 +7,10 @@ public class houseBurner : MonoBehaviour {
 	public int health = 100;
 	public int fireLife = 100;
 	public bool burning = false;
+	public int fireType;
 	public bool extinguishing = false;
+	public GameObject fireHouseObject;
+	private clickListener fireHouseListener;
 
 	//sprites
 	public Sprite house;
@@ -17,6 +20,7 @@ public class houseBurner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		fireHouseListener = fireHouseObject.GetComponent<clickListener>();
 	}
 	
 	// Update is called once per frame
@@ -33,6 +37,7 @@ public class houseBurner : MonoBehaviour {
 			if (fireLife < 0) {
 				spriteRenderer.sprite = house;
 				extinguishing = false;
+				fireHouseListener.returnToFireHouse();
 			}
 		}
 		

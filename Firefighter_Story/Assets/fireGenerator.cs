@@ -14,6 +14,8 @@ public class fireGenerator : MonoBehaviour {
 	private float fireTime;
 	//index for house to burn
 	private int i;
+	//integer for fire type
+	private int j;
 	//script of house to burn
 	private houseBurner houseScript;
 
@@ -43,8 +45,10 @@ public class fireGenerator : MonoBehaviour {
 	void setRandomHouseOnFire() {
 		time = 0;
 		i = Mathf.RoundToInt(Random.Range(0, houses.Length));
+		j = Mathf.RoundToInt(Random.Range(0, 3));
 		houseScript = houses[i].GetComponent<houseBurner>();
 		houseScript.burning = true;
+		houseScript.fireType = j;
 
 	}
 

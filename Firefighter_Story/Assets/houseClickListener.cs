@@ -28,15 +28,23 @@ public class houseClickListener : MonoBehaviour {
 		}
 	}
   void OnMouseDown() {
-  	if (playerScript.selected == true) {
-  		playerScript.home = transform.position;
-  		playerScript.returning = true;
-  		returning = true;
+  	if (playerScript.returning == true) {
+  		return;
   	}
-  	if (Mathf.Abs(fireTruckObject.transform.position.x - transform.position.x) < 0.6f) {
-  		playerScript.vertOffsetting = true;
-  	}
-		getDirection();
+  	else if (playerScript.canFightFireTypes.Contains(burnerScript.fireType)) {
+	  	if (playerScript.selected == true) {
+	  		playerScript.home = transform.position;
+	  		playerScript.returning = true;
+	  		returning = true;
+	  	}
+	  	if (Mathf.Abs(fireTruckObject.transform.position.x - transform.position.x) < 0.6f) {
+	  		playerScript.vertOffsetting = true;
+	  	}
+			getDirection();
+		}
+		else {
+			print("This FireHouse Cannot Fight That Type of Fire!!");
+		}
   }
 
 	// Use this for initialization
@@ -51,7 +59,9 @@ public class houseClickListener : MonoBehaviour {
 			getDirection();
 			prevVertOffset = playerScript.vertOffsetting;
 		}
-		else {prevVertOffset = playerScript.vertOffsetting;}
+		else {
+			prevVertOffset = playerScript.vertOffsetting;
+		}
 		if (returning == true && direction == "SW") {
 			playerScript.returnHomeSW();
 			if (playerScript.returning == false) {

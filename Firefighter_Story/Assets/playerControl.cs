@@ -5,14 +5,14 @@ using UnityEngine;
 public class playerControl : MonoBehaviour {
 	public GameObject player;
 	public GameObject fireHouseObject;
-	private clickListener fireHouseScript;
 	public Vector3 home;
 
 	// Variables
-	Vector3 origin = new Vector3(0,0,0);
 	public bool selected = false;
 	public bool returning = false;
 	public bool vertOffsetting = false;
+	// apparently everyone uses "lists" instead of arrays
+	public List<int> canFightFireTypes = new List<int>() {0,2};
 
 	// Functions
 	public void verticalOffsetMove() {
@@ -104,12 +104,10 @@ public class playerControl : MonoBehaviour {
 
     void OnMouseDown() {
     	selected = true;
-    	Debug.Log(selected);
     }		
 
 	// Use this for initialization
 	void Start () {
-		fireHouseScript = fireHouseObject.GetComponent<clickListener>();
 		home = fireHouseObject.transform.position;
 	}
 	

@@ -7,32 +7,39 @@ public class clickListener : MonoBehaviour {
 	private playerControl playerScript;
 	private bool returning = false;
 	private string direction = null;
+	private bool prevVertOffset = false;
 
 	// Methods
-    void OnMouseDown() {
-    	if (playerScript.selected == true) {
-    		returning = true;
-    	}
-    	print(Mathf.Abs(fireTruckObject.transform.position.x - transform.position.x));
-    	if (Mathf.Abs(fireTruckObject.transform.position.x - transform.position.x) < 0.6f) {
-    		print("vertical offsetting");
-    		playerScript.vertOffsetting = true;
-    	}
-			if(fireTruckObject.transform.position.x > transform.position.x){
-				if (fireTruckObject.transform.position.y > transform.position.y){
-					direction = "SW";
-				}
-				else {
-					direction = "NW";
-				}
-			}
-			else if (fireTruckObject.transform.position.y > transform.position.y) {
-				direction = "SE";
+	public void getDirection() {
+		if(fireTruckObject.transform.position.x > transform.position.x){
+			if (fireTruckObject.transform.position.y > transform.position.y){
+				direction = "SW";
 			}
 			else {
-				direction = "NE";
+				direction = "NW";
 			}
-    }
+		}
+		else if (fireTruckObject.transform.position.y > transform.position.y) {
+			direction = "SE";
+		}
+		else {
+			direction = "NE";
+		}
+	}
+	public void returnToFireHouse() {
+		if (playerScript.selected == true) {
+  		playerScript.home = transform.position;
+  		playerScript.returning = true;
+  		returning = true;
+  	}
+  	if (Mathf.Abs(fireTruckObject.transform.position.x - transform.position.x) < 0.6f) {
+  		playerScript.vertOffsetting = true;
+  	}
+		getDirection();
+	}
+  void OnMouseDown() {
+  	returnToFireHouse();
+  }
 
 	// Use this for initialization
 	void Start () {
@@ -41,17 +48,36 @@ public class clickListener : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (prevVertOffset == true && playerScript.vertOffsetting == false) {
+			getDirection();
+			prevVertOffset = playerScript.vertOffsetting;
+		}
+		else {
+			prevVertOffset = playerScript.vertOffsetting;
+		}
 		if (returning == true && direction == "SW") {
 			playerScript.returnHomeSW();
+			if (playerScript.returning == false) {
+				returning = false;
+			}
 		}
 		if (returning == true && direction == "NW") {
 			playerScript.returnHomeNW();
+			if (playerScript.returning == false) {
+				returning = false;
+			}
 		}
 		if (returning == true && direction == "SE") {
 			playerScript.returnHomeSE();
+			if (playerScript.returning == false) {
+				returning = false;
+			}
 		}
 		if (returning == true && direction == "NE") {
 			playerScript.returnHomeNE();
+			if (playerScript.returning == false) {
+				returning = false;
+			}
 		}
 	}
 }
